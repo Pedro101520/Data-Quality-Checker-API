@@ -61,16 +61,11 @@ jobs:
           docker build -t $ECR_URI:$IMAGE_TAG .
           docker push $ECR_URI:$IMAGE_TAG
 
-      - name: Deploy no App Runner
+      - name: Deploy no ECS Express Mode
         env:
           ECR_URI: ${{ secrets.ECR_REPOSITORY_URI }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          aws apprunner update-service \
-            --service-arn ${{ secrets.APP_RUNNER_SERVICE_ARN }} \
-            --source-configuration '{
-              "ImageRepository": {
-                "ImageIdentifier": "'"$ECR_URI:$IMAGE_TAG"'",
-                "ImageRepositoryType": "ECR"
-              }
-            }'
+          aws ecs update-express-gateway-service \
+            --service-arn ${{ secrets.ECS_SERVICE_ARN }} \
+            --primary-container "image"="$ECR_URI:$IMAGE_TAG"
