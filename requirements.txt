@@ -2,4 +2,5 @@ fastapi==0.136.1
 pydantic==2.13.4
 pytest==9.1.1
 uvicorn==0.46.0
+mangum==0.21.0
 pytest-cov
