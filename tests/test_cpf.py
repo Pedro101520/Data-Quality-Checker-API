@@ -16,10 +16,8 @@ def test_cpf_caracter(cpf, retorno_esperado):
 
     assert verifica == retorno_esperado
 
-
 def test_cpf_valido():
     verifica = CpfService.validaCpf("286.255.878-87")
-
     assert verifica == {
         "valido": True,
         "motivo": "CPF válido"
