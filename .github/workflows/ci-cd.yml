@@ -61,11 +61,8 @@ jobs:
           docker build -t $ECR_URI:$IMAGE_TAG .
           docker push $ECR_URI:$IMAGE_TAG
 
-      - name: Deploy no ECS Express Mode
-        env:
-          ECR_URI: ${{ secrets.ECR_REPOSITORY_URI }}
-          IMAGE_TAG: ${{ github.sha }}
+      - name: Deploy to Lambda
         run: |
-          aws ecs update-express-gateway-service \
-            --service-arn ${{ secrets.ECS_SERVICE_ARN }} \
-            --primary-container "image"="$ECR_URI:$IMAGE_TAG"
+          aws lambda update-function-code \
+            --function-name data-quality-checker-lambda \
+            --image-uri 992382549358.dkr.ecr.sa-east-1.amazonaws.com/data-quality-checker-lambda:${{ github.sha }}
