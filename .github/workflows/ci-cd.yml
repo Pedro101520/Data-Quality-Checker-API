@@ -61,8 +61,12 @@ jobs:
           docker build -t $ECR_URI:$IMAGE_TAG .
           docker push $ECR_URI:$IMAGE_TAG
 
-      - name: Deploy to Lambda
+      - name: Deploy Lambda
+        env:
+          ECR_URI: ${{ secrets.ECR_REPOSITORY_URI }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           aws lambda update-function-code \
-            --function-name data-quality-checker-lambda \
-            --image-uri 992382549358.dkr.ecr.sa-east-1.amazonaws.com/data-quality-checker-lambda:${{ github.sha }}
+            --function-name data-quality-checker \
+            --image-uri $ECR_URI:$IMAGE_TAG \
+            --region sa-east-1
