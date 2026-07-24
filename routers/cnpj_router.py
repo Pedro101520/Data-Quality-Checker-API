@@ -4,10 +4,6 @@ from services.cnpj_services import CnpjService
 
 cnpj_router = APIRouter(prefix="/cnpj", tags=["cnpj"])
 
-@cnpj_router.get("/")
-async def home():
-    return {"mensagem": "Voce acessou a rota padrao de autenticacao", "autenticacao": False}
-
 @cnpj_router.post("/valida", response_model=CnpjResponse)
 async def valida_cnpj(cnpj_request: CnpjRequest):
 
