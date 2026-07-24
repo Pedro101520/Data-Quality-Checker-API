@@ -27,7 +27,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Testes com pytest
-        run: pytest tests/ -v
+        run: python -m pytest tests/ -v
 
       - name: Cobertura com pytest-cov
         run: pytest tests/ --cov=src --cov-report=term-missing
