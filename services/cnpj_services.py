@@ -18,7 +18,7 @@ class CnpjService:
                         "motivo": "CNPJ inválido"
                     }   
 
-                with open(r"assets\ASCII_letra.json", "r", encoding="utf-8") as arquivo:
+                with open("assets//ASCII_letra.json", "r", encoding="utf-8") as arquivo:
                     valores = json.load(arquivo)
 
                 lista_numerica = []
