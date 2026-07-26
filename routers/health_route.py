@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-health_route = APIRouter(prefix="/")
+health_route = APIRouter()
 
 @health_route.get("/")
 async def home():
