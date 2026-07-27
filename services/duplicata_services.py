@@ -1,5 +1,4 @@
 import pandas as pd
-from schemas.duplicata_schema import DuplicataRequest
 
 class DuplicataService:
 
@@ -7,6 +6,8 @@ class DuplicataService:
     def valida(pk, dados):
         df = pd.DataFrame(dados)
 
-        count_duplicata = df.duplicated(subset=[pk]).sum()
-
-        return count_duplicata
+        if pk in df.columns:
+            count_duplicata = df.duplicated(subset=[pk]).sum()
+            return count_duplicata
+        else:
+            raise ValueError("Pk não encontrada nos dados disponibilizados")

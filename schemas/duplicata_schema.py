@@ -4,11 +4,17 @@ from typing import Any
 class DuplicataRequest(BaseModel):
     pk: str = Field(description="Valor de referência para conferir duplicatas")
     dados: list[dict[str, Any]] = Field(
-        description="Lista de valores a ser informada",
-        examples=[[
-            {"cnpj": "12345678000190", "nome": "Empresa A"},
-            {"cnpj": "12345678000190", "nome": "Empresa A Ltda"},
-        ]]
+        {
+            "pk": "cpf",
+            "dados": [
+                {
+                "id": 1,
+                "nome": "Pedro",
+                "idade": 25,
+                "cidade": "São Paulo"
+                }
+            ]
+        }
     )
 
 
@@ -19,3 +25,4 @@ class ValoresDuplicataResponse(BaseModel):
 class DuplicataResponse(BaseModel):
     chave_pk: str
     qtde_duplicata: int
+    validacao: str
