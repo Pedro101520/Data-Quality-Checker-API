@@ -17,4 +17,5 @@ class ValoresDuplicataResponse(BaseModel):
     num_ocorrencia: int
 
 class DuplicataResponse(BaseModel):
-    duplicados: list[ValoresDuplicataResponse]
+    chave_pk: str
+    qtde_duplicata: int
