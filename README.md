@@ -69,10 +69,11 @@ Retorna o número de informações duplicatas em uma lista de JSON com base na c
 ## Pipeline de CI/CD
 
 ## CI
-Na etapa de Ci, inclui:
+Na etapa de CI, inclui:
 - Verificações de trigger quando ocorrer push nas branches feature/* ou na main
 - Pull request na branch main
 - Após a ativação, ocorre o build do ambiente, preparando a máquina e instalando as bibliotecas com base no requirements.txt
+- Verificação por meio de testes unitários usando o pytest
 
 ## CD
 - Configurei as credenciais de forma segura da AWS por meio do Repository secrets do github
